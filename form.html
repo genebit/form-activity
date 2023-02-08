@@ -8,12 +8,34 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
         
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
         * {
             font-family: 'Oswald', sans-serif;
         }
 
+        /* UTILITIES */
         .bg-gray {
             background-color: #778898;
+        }
+
+        .mt-1 {
+            margin-top: 1rem ;
+        }
+
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* COMPONENTS */
+        .container {
+            width: 40%;
+            margin: 0 auto;
         }
 
         .btn {
@@ -31,10 +53,6 @@
             color: white;
         }
 
-        .mt-1 {
-            margin-top: 1rem ;
-        }
-
         .card {
             background-color: white;
             padding: 2rem 3rem;
@@ -45,14 +63,9 @@
             display: flex;
             flex-direction: column;
         }
-
-        .container {
-            width: 40%;
-            margin: 0 auto;
-        }
     </style>
 </head>
-<body class="bg-gray">
+<body class="bg-gray center-content">
     <div class="container">
         <div class="card">
             <h1>Registration Form</h1>
