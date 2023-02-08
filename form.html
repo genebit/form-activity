@@ -5,26 +5,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Activity</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .bg-gray {
+            background-color: #778898;
+        }
+
+        .btn {
+            padding: 0.35rem 2rem;
+            border: none;
+        }
+
+        .btn-success {
+            background-color: green;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: red;
+            color: white;
+        }
+
+        .mt-1 {
+            margin-top: 1rem ;
+        }
+
+        .card {
+            background-color: white;
+            padding: 2rem 3rem;
+            border-radius: 5px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            width: 40%;
+            margin: 0 auto;
+        }
+    </style>
 </head>
-<body>
-    <h1>Registration Form</h1>
-    <form>
-        First Name: <input type="text" name="firstname"><br>
-        Last Name: <input type="text" name="lastname"><br>
-        Nick Name: <input type="text" name="nickname"><br>
-        Email: <input type="email" name="email"><br>
-        Password: <input type="password" name="passw"><br>
-        Date of Birth: <input type="date" name="dob"><br>
-        Gender: 
-        <input id="M" type="radio" name="gender" value="M">
-        <label for="M">Male</label> 
-        <input id="F" type="radio" name="gender" value="F">
-        <label for="F">Female</label>
-        <br>
-        Mobile: <input type="number" name="mobilenum"><br>
-        Address: <textarea name="address" cols="30" rows="10"></textarea><br>
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
-    </form>
+<body class="bg-gray">
+    <div class="container">
+        <div class="card">
+            <h1>Registration Form</h1>
+            <form class="form">
+                <label for="firstName">First Name:</label>
+                <input type="text" name="firstname">
+                
+                <label for="">Last Name:</label>
+                <input type="text" name="lastname">
+        
+                <label for="">Nick Name:</label>
+                <input type="text" name="nickname">
+        
+                <label for="">Email:</label>
+                <input type="email" name="email">
+        
+                <label for="">Password:</label>
+                <input type="password" name="passw">
+        
+                <label for="">Date of Birth:</label>
+                <input type="date" name="dob">
+        
+                <label for="">Gender:</label>
+                <div>
+                    <input id="M" type="radio" name="gender" value="M">
+                    <label for="M">Male</label> 
+                    <input id="F" type="radio" name="gender" value="F">
+                    <label for="F">Female</label>
+                    <input id="O" type="radio" name="gender" value="O">
+                    <label for="O">Other</label>
+                </div>
+                
+                <label for="">Mobile:</label>
+                <input type="number" name="mobilenum">
+        
+                <label for="">Address:</label>
+                <textarea name="address" cols="30" rows="10"></textarea>
+                
+                <div class="mt-1">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                    <button class="btn btn-danger" type="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
