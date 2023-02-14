@@ -32,7 +32,7 @@
         }
 
         .text-danger {
-            color: #e83737;
+            color: red;
         }
 
         .text-success {
@@ -73,37 +73,47 @@
     </style>
     <script language="javascript" type="text/javascript">
         function checkAge (age, ageFieldPrompt) {
+            ageFieldPrompt.innerHTML = ""
             if (age < 21) {
                 ageFieldPrompt.innerHTML = "Minors are not allowed!"
                 return false
             }
             return true
         }
+        
         function checkPassword (passwordField, passwordFieldPrompt) {
+            passwordFieldPrompt.innerHTML = ""
             if (passwordField.length < 8) {
                 passwordFieldPrompt.innerHTML = "Password must be at least 8 characters."
                 return false
             }
             return true
         }
-        function submitForm () {
+
+        function submitForm (event) {
+            // prevent form from submiting and refresh
+            event.preventDefault()
+
+            // fields
             const form = document.registrationForm
             const passwordField = form.passw.value
             const dateField = form.dob.value
+            
+            // prompt msg
             const validationPrompt = document.getElementById("formStatusValidationPrompt")
+            const passwordFieldPrompt = document.getElementById("passwPrompt")
+            
+            // clear prompts per submit
             validationPrompt.innerHTML = ""
             
-            const passwordFieldPrompt = document.getElementById("passwPrompt")
-            passwordFieldPrompt.innerHTML = ""
-            
-            let age = new Date().getFullYear() - new Date(dateField).getFullYear()
             const ageFieldPrompt = document.getElementById("agePrompt")
-            ageFieldPrompt.innerHTML = ""
-
-            if (!checkPassword(passwordField, passwordFieldPrompt)) return
-            else if (!checkAge(age, ageFieldPrompt)) return
-            else    validationPrompt.innerHTML = "Hooray! Your account has been succesfully created."
+            let age = new Date().getFullYear() - new Date(dateField).getFullYear()
+            
+            if (checkPassword(passwordField, passwordFieldPrompt) && checkAge(age, ageFieldPrompt)) {
+                validationPrompt.innerHTML = "Hooray! Your account has been succesfully created."
+            }
         }
+
     </script>
 </head>
 <body class="bg-gray center-content">
@@ -111,45 +121,45 @@
         <div class="card">
             <h1>Registration Form</h1>
             <small id="formStatusValidationPrompt" class="text-success"></small>
-            <form class="form" name="registrationForm">
-                <label for="firstName">First Name:</label>
-                <input type="text" name="firstname">
+            <form id="regForm" class="form" name="registrationForm" onsubmit="submitForm(event)">
+                <label for="firstname">First Name:</label>
+                <input id="firstname" type="text" name="firstname" required>
                 
-                <label for="">Last Name:</label>
-                <input type="text" name="lastname">
+                <label for="lastname">Last Name:</label>
+                <input id="lastname" type="text" name="lastname" required>
         
-                <label for="">Nick Name:</label>
-                <input type="text" name="nickname">
+                <label for="nickname">Nick Name:</label>
+                <input id="nickname" type="text" name="nickname" required>
         
-                <label for="">Email:</label>
-                <input type="email" name="email">
+                <label for="email">Email:</label>
+                <input id="email" type="email" name="email" required>
                 
-                <label for="">Password:</label>
-                <input type="password" name="passw">
+                <label for="password">Password:</label>
+                <input id="password" type="password" name="passw" required>
                 <small class="text-danger" id="passwPrompt"></small>
 
-                <label for="">Date of Birth:</label>
-                <input type="date" name="dob">
+                <label for="dob">Date of Birth:</label>
+                <input id="dob" type="date" name="dob" required>
                 <small class="text-danger" id="agePrompt"></small>
         
-                <label for="">Gender:</label>
-                <div>
-                    <input id="M" type="radio" name="gender" value="M">
+                <label>Gender:</label>
+                <section>
+                    <input id="M" type="radio" name="gender" value="M" required>
                     <label for="M">Male</label> 
-                    <input id="F" type="radio" name="gender" value="F">
+                    <input id="F" type="radio" name="gender" value="F" required>
                     <label for="F">Female</label>
-                    <input id="O" type="radio" name="gender" value="O">
+                    <input id="O" type="radio" name="gender" value="O" required>
                     <label for="O">Other</label>
-                </div>
+                </section>
                 
-                <label for="">Mobile:</label>
-                <input type="number" name="mobilenum">
+                <label for="mobilenum">Mobile:</label>
+                <input id="mobilenum" type="number" name="mobilenum" required>
         
-                <label for="">Address:</label>
-                <textarea name="address" cols="30" rows="10"></textarea>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" cols="30" rows="10" required></textarea>
                 
                 <div class="mt-1">
-                    <button class="btn btn-success" type="button" onclick="submitForm()">Submit</button>
+                    <button class="btn btn-success" type="submit">Submit</button>
                     <button class="btn btn-danger" type="reset">Reset</button>
                 </div>
             </form>
