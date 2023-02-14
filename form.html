@@ -72,6 +72,20 @@
         }
     </style>
     <script language="javascript" type="text/javascript">
+        function checkAge (age, ageFieldPrompt) {
+            if (age < 21) {
+                ageFieldPrompt.innerHTML = "Minors are not allowed!"
+                return false
+            }
+            return true
+        }
+        function checkPassword (passwordField, passwordFieldPrompt) {
+            if (passwordField.length < 8) {
+                passwordFieldPrompt.innerHTML = "Password must be at least 8 characters."
+                return false
+            }
+            return true
+        }
         function submitForm () {
             const form = document.registrationForm
             const passwordField = form.passw.value
@@ -85,16 +99,9 @@
             let age = new Date().getFullYear() - new Date(dateField).getFullYear()
             const ageFieldPrompt = document.getElementById("agePrompt")
             ageFieldPrompt.innerHTML = ""
-            
-            if (passwordField.length < 8) {
-                passwordFieldPrompt.innerHTML = "Password must be at least 8 characters."
-                return
-            }
-            
-            if (age < 21) {
-                ageFieldPrompt.innerHTML = "Minors are not allowed!"
-                return
-            }
+
+            if (!checkPassword(passwordField, passwordFieldPrompt)) return
+            if (!checkAge(age, ageFieldPrompt)) return
 
             validationPrompt.innerHTML = "Hooray! Your account has been succesfully created."
         }
