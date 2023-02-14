@@ -82,7 +82,7 @@
             const passwordFieldPrompt = document.getElementById("passwPrompt")
             passwordFieldPrompt.innerHTML = ""
             
-            let age = getAge(dateField)
+            let age = new Date().getFullYear() - new Date(date).getFullYear()
             const ageFieldPrompt = document.getElementById("agePrompt")
             ageFieldPrompt.innerHTML = ""
             
@@ -97,10 +97,6 @@
             }
 
             validationPrompt.innerHTML = "Hooray! Your account has been succesfully created."
-        }
-
-        function getAge (date) {
-            return new Date().getFullYear() - new Date(date).getFullYear()
         }
     </script>
 </head>
