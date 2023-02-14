@@ -31,9 +31,17 @@
             align-items: center;
         }
 
+        .text-danger {
+            color: #e83737;
+        }
+
+        .text-success {
+            color: green;
+        }
+
         /* COMPONENTS */
         .container {
-            width: 20%;
+            width: 40%;
             margin: 0 auto;
         }
 
@@ -63,12 +71,45 @@
             flex-direction: column;
         }
     </style>
+    <script language="javascript" type="text/javascript">
+        function submitForm () {
+            const form = document.registrationForm
+            const passwordField = form.passw.value
+            const dateField = form.dob.value
+            const validationPrompt = document.getElementById("formStatusValidationPrompt")
+            validationPrompt.innerHTML = ""
+            
+            const passwordFieldPrompt = document.getElementById("passwPrompt")
+            passwordFieldPrompt.innerHTML = ""
+            
+            let age = getAge(dateField)
+            const ageFieldPrompt = document.getElementById("agePrompt")
+            ageFieldPrompt.innerHTML = ""
+            
+            if (passwordField.length < 8) {
+                passwordFieldPrompt.innerHTML = "Password must be at least 8 characters."
+                return
+            }
+            
+            if (age < 21) {
+                ageFieldPrompt.innerHTML = "Minors are not allowed!"
+                return
+            }
+
+            validationPrompt.innerHTML = "Hooray! Your account has been succesfully created."
+        }
+
+        function getAge (date) {
+            return new Date().getFullYear() - new Date(date).getFullYear()
+        }
+    </script>
 </head>
 <body class="bg-gray center-content">
     <div class="container">
         <div class="card">
             <h1>Registration Form</h1>
-            <form class="form">
+            <small id="formStatusValidationPrompt" class="text-success"></small>
+            <form class="form" name="registrationForm">
                 <label for="firstName">First Name:</label>
                 <input type="text" name="firstname">
                 
@@ -80,12 +121,14 @@
         
                 <label for="">Email:</label>
                 <input type="email" name="email">
-        
+                
                 <label for="">Password:</label>
                 <input type="password" name="passw">
-        
+                <small class="text-danger" id="passwPrompt"></small>
+
                 <label for="">Date of Birth:</label>
                 <input type="date" name="dob">
+                <small class="text-danger" id="agePrompt"></small>
         
                 <label for="">Gender:</label>
                 <div>
@@ -104,7 +147,7 @@
                 <textarea name="address" cols="30" rows="10"></textarea>
                 
                 <div class="mt-1">
-                    <button class="btn btn-success" type="submit">Submit</button>
+                    <button class="btn btn-success" type="button" onclick="submitForm()">Submit</button>
                     <button class="btn btn-danger" type="reset">Reset</button>
                 </div>
             </form>
