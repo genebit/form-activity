@@ -101,9 +101,8 @@
             ageFieldPrompt.innerHTML = ""
 
             if (!checkPassword(passwordField, passwordFieldPrompt)) return
-            if (!checkAge(age, ageFieldPrompt)) return
-
-            validationPrompt.innerHTML = "Hooray! Your account has been succesfully created."
+            else if (!checkAge(age, ageFieldPrompt)) return
+            else    validationPrompt.innerHTML = "Hooray! Your account has been succesfully created."
         }
     </script>
 </head>
